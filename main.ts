@@ -9,11 +9,12 @@ input.onButtonPressed(Button.AB, function () {
     )
     data_points = 0
     avg_dtime = 0
-    basic.pause(100)
     radio.sendString("head_tilt_reset")
 })
 radio.onReceivedValue(function (name, value) {
     if (name == "dtime") {
+        basic.showIcon(IconNames.Square)
+        music.playTone(262, music.beat(BeatFraction.Whole))
         temp = value + avg_dtime * data_points
         data_points += 1
         avg_dtime = temp / data_points
